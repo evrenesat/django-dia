@@ -1,4 +1,4 @@
-from django.db.models.fields.related import ForeignKey, OneToOneField, ManyToManyField
+from django.db.models.fields.related import ForeignKey, OneToOneField, ManyToManyField, RelatedField
 from django.contrib.contenttypes.fields import GenericRelation
 from django.apps import apps
 
@@ -204,7 +204,7 @@ def prepare_model_relations(model):
         # if self.get_field_name(field) in self.exclude_fields:
         #     continue
 
-        if isinstance(field, ManyToManyField):
+        if isinstance(field, RelatedField):
             if does_m2m_auto_create_table(field):
                 result.append(prepare_relation(field, 'n', 'n'))
             # otherwise ignore this m2m
